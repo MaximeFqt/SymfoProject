@@ -1,0 +1,73 @@
+@media screen and (max-width: 640px) {
+    /* GLOBAL SECTION */
+    body .page {
+        margin: 10px;
+    }
+
+    body .page p {
+        font-size: 12px;
+    }
+    /* END GLOBAL SECTION */
+
+
+
+    /* NAV BAR */
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around; /* to center the buttons in nav bar */
+        top: 0;
+    }   
+
+    nav div.onglets {
+        display: none;
+    }
+    /* END NAV BAR */
+
+
+
+    /* TITLE */
+    header.title {
+        margin-top: 20px;
+        background-size: 250px 250px;
+    }
+
+    header.title h1 {
+        font-size: 30px;
+        padding: 100px;
+    }
+    /* END TITLE */
+
+
+
+    /* ARTICLES */
+    img {
+        max-width: 100%;
+        height: 30vh;
+    }
+
+    h3.topicTitle, article#informatique h3.topicTitle {
+        text-align: center;
+    }
+
+    figure, article#informatique figure {
+        display: block;
+        text-align: center;
+    }
+    /* END ARTICLES */
+
+
+
+    /* UP ARROW */
+    .btn {
+        height: 30px;
+        width: 30px;
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    .icone {
+        height: 30px;
+    }
+    /* END UP ARROW */
+}

@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+img {
+    max-width: 50%;
+    max-height: 60vh;
+}
+
+/* Font import */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #141414;
+    color: #c2c2c2;
+    /* Top/bottom margin of 20px and right/left of 80px */
+    margin: 0;
+    padding: 0;
+}
+
+header, section.page {
+    text-align: center;
+    margin: 20px 80px;
+}
+
+/** NAVIGATION BAR **/
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* Fix the nav bar when scrolling down the page */
+    position: sticky;
+    top: 0;
+    /* Background */
+    background-color: #141414; /* to keep the background for the nav when scroll */
+    padding: 10px 0;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    float: left;
+    list-style-type: none;
+}
+
+.menu a {
+    /* removing basic style from links */
+    text-decoration: none;
+    color: #c2c2c2;
+
+    margin-right: 20px;
+}
+
+nav .buttons button {
+    padding: 13px 20px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+nav .buttons button.login {
+    background-color: inherit; /* take the background color of the parent tag */
+    margin-right: 10px;
+    color: #8f8f8f;
+}
+
+nav .buttons button.register {
+    background-color: rgb(241, 37, 37);
+    margin-right: 10px;
+    color: #fff;
+}
+/** END NAVIGATION BAR **/
+
+
+
+/** HEADER **/
+div.title {
+    margin-top: 40px;
+    /*background-image: url(../img/ligue1.png);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px 400px;
+}
+
+div.title h1 {
+    text-align: center;
+    font-size: 60px;
+    padding: 50px;
+    color: #c2c2c2;
+}
+
+div.title img.title_logo {
+    max-height: 40vh;
+}
+/** END HEADER **/
+
+
+
+/** UP ARROW **/
+.btn {
+    height: 70px;
+    width: 70px;
+    background-color: #2b2a2a;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.btn.active {
+    opacity: 1;
+}
+/** END UP ARROW **/
+
+
+
+/** FOOTER **/
+footer {
+    background-color: #1a1a1a;
+    padding: 25px 100px;
+    color: #828282;
+}
+
+footer .columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer p#copy {
+    text-align: center;
+}
+/** END FOOTER **/
+
