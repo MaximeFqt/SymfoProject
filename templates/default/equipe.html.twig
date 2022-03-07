@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} My new website ! - Equipes {% endblock %}
+
+{% block body %}
+
+    <h1> Vous trouverez ici toutes les équipes de Ligue 1 </h1>
+
+    <section class="equipe">
+        <table class="table">
+            <tr>
+                <th> Id </th>
+                <th> Nom </th>
+                <th> Nombre de joueurs </th>
+                <th> Ecusson </th>
+            </tr>
+            {% for e in equipe %}
+                <tr>
+                    <td> {{ e.id }} </td>
+                    <td> {{ e.nom }} </td>
+                    <td> {{ e.nbjoueur }} </td>
+                    <td> <img src="{{ asset('img/'~e.ecusson) }}" alt="{{ e.nom }}"> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+{% endblock %}

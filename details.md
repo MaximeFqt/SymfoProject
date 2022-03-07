@@ -64,6 +64,10 @@ php bin/console make:controller DefaultController
 
 
 composer require --dev orm-fixtures
+
+composer require security
+
+php bin/console make:crud
 ```
 
 Retrouver le projet sur **[GitHub](https://github.com/MaximeFqt/SymfoProject)**

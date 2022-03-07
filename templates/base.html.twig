@@ -20,7 +20,7 @@
         {% endblock %}
     </head>
 
-    <header>
+    <header id="header">
         {% block header %}
 
             <!-- NAVIGATION BAR -->
@@ -28,24 +28,19 @@
                 <div class="onglets">
                     <ul class="menu">
                         <!-- FINIR LE MENU DEROULANT -->
-                        <li> <a href="#"> Test </a> </li>
-                        <li> <a href="#"> Test </a> </li>
-                        <li> <a href="#"> Test </a> </li>
+                        <li> <a href="{{ path('accueil') }}"> Accueil </a> </li>
+                        <li> <a href="{{ path('equipe') }}"> Equipes </a> </li>
+                        <li> <a href="{{ path('equipe_index') }}"> indexEquipe </a> </li>
                     </ul>
                 </div>
                 <div class="buttons">
                     <button class="login"> J'ai déjà un compte </button>
-                    <button class="register"> S'enregistrer </button>
+                    <button class="register">
+                        <a href="{{ path('app_login') }}"></a> S'enregistrer
+                    </button>
                 </div>
             </nav>
             <!-- END NAVIGATION BAR -->
-
-            <!-- TITLE -->
-            <div class="title">
-                <h1> Découvrez et suivez vos équipes favorites de Ligue 1 ! </h1>
-                <img src="{{ asset('img/ligue1.png') }}" alt="ligue1" class="title_logo">
-            </div>
-
 
             <!-- ARROW UP -->
             <div class="btn">

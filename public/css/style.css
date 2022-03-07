@@ -5,6 +5,16 @@ img {
     max-height: 60vh;
 }
 
+a {
+    /* removing basic style from links */
+    text-decoration: none;
+    color: #c2c2c2;
+}
+
+a:hover {
+    color: #c2c2c2;
+}
+
 /* Font import */
 
 html {
@@ -29,9 +39,10 @@ header, section.page {
 nav {
     display: flex;
     flex-wrap: wrap;
+    width: 90%;
     justify-content: space-between;
     /* Fix the nav bar when scrolling down the page */
-    position: sticky;
+    position: fixed;
     top: 0;
     /* Background */
     background-color: #141414; /* to keep the background for the nav when scroll */
@@ -47,10 +58,6 @@ nav {
 }
 
 .menu a {
-    /* removing basic style from links */
-    text-decoration: none;
-    color: #c2c2c2;
-
     margin-right: 20px;
 }
 
@@ -142,3 +149,31 @@ footer p#copy {
 }
 /** END FOOTER **/
 
+
+
+/** TABLE EQUIPE **/
+section.equipe {
+    margin: 50px;
+}
+
+.table th {
+    font-weight: 700;
+    color: #c2c2c2;
+}
+.table td {
+    color: #c2c2c2;
+    padding-top: 30px;
+}
+
+.table img {
+    padding-bottom: 20px;
+    color: #c2c2c2;
+    max-width: 50px;
+    max-height: 60px;
+}
+
+.table a:hover {
+    color: #6b6b6b;
+    transition-duration: 1s;
+}
+/** END TABLE EQUIPE **/
