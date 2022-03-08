@@ -4,11 +4,16 @@ namespace App\DataFixtures;
 
 use App\Entity\Equipe;
 use App\Entity\Joueur;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+
+    public function __construct(private UserPasswordHasherInterface $passwordHasher) { }
+
     public function load(ObjectManager $manager): void
     {
         // Stats du 01/03/2022
@@ -284,6 +289,28 @@ class AppFixtures extends Fixture
         $bord1 = new Joueur("Benoît Costil", "France", "Gardien", 1, $team20);      $manager->persist($bord1);
         $bord2 = new Joueur("Gaëtan Poussin", "France", "Gardien", 16, $team20);    $manager->persist($bord2);
         $bord3 = new Joueur("Davy Rouyard", "France", "Gardien", 30, $team20);      $manager->persist($bord3);
+
+
+        /* USER */
+        $usr = new User();
+
+        $usr->setEmail("user1@email.fr");
+        $usr->setPassword(
+            $this->passwordHasher->hashPassword(
+                $usr, "user1"
+            )
+        );
+        $usr->setRoles(["ROLE_ADMIN"]); $manager->persist($usr);
+
+        $usr2 = new User();
+
+        $usr2->setEmail("user2@email.fr");
+        $usr2->setPassword(
+            $this->passwordHasher->hashPassword(
+                $usr2, "user2"
+            )
+        );
+        $usr2->setRoles(["ROLE_USER"]); $manager->persist($usr2);
 
         $manager->flush();
     }

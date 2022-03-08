@@ -30,20 +30,31 @@
                         <!-- FINIR LE MENU DEROULANT -->
                         <li> <a href="{{ path('accueil') }}"> Accueil </a> </li>
                         <li> <a href="{{ path('equipe') }}"> Equipes </a> </li>
-                        <li> <a href="{{ path('equipe_index') }}"> indexEquipe </a> </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li> <a href="{{ path('equipe_index') }}"> ManageEquipe </a> </li>
+                            <li> <a href="{{ path('admin') }}"> Admin </a> </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="buttons">
-                    <button class="login"> J'ai déjà un compte </button>
-                    <button class="register">
-                        <a href="{{ path('app_login') }}"></a> S'enregistrer
-                    </button>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+                        <a href="{{ path('app_logout') }}">
+                            <button class="register"> Déconnexion </button>
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}">
+                            <button class="login"> J'ai déjà un compte </button>
+                        </a>
+                        <a href="{{ path('app_register') }}">
+                            <button class="register"> S'enregistrer </button>
+                        </a>
+                    {% endif %}
                 </div>
             </nav>
             <!-- END NAVIGATION BAR -->
 
             <!-- ARROW UP -->
-            <div class="btn">
+            <div class="btnArrow">
                 <img src="{{ asset('img/icons/arrow-icone.svg') }}" alt="arrow-up" class="icon">
             </div>
         {% endblock %}

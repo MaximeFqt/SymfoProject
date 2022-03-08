@@ -68,6 +68,16 @@ composer require --dev orm-fixtures
 composer require security
 
 php bin/console make:crud
+
+php bin/console make:user
+
+php bin/console make:auth
+
+composer require admin -W
+
+php bin/console make:admin:dashboard
+
+php bin/console make:admin:crud (Equipe et Joueur)
 ```
 
 Retrouver le projet sur **[GitHub](https://github.com/MaximeFqt/SymfoProject)**
@@ -78,3 +88,10 @@ Source pour les Equipe et effectif : **[Ici](https://www.transfermarkt.fr/ligue-
 
 + PSG
 + OM
+
+## **Ce qu'on peut faire :**
++ Voir l'index et le equipe (non-connecté)
++ connexion admin avec accès dashboard, manageteam
++ connexion user sans accès dashboard, manageteam
++ bouton de déconnexion
++ Création user non-admin

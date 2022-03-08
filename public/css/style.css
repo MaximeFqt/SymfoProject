@@ -15,6 +15,13 @@ a:hover {
     color: #c2c2c2;
 }
 
+h1 {
+    text-align: center;
+    font-size: 60px;
+    padding: 50px;
+    color: #c2c2c2;
+}
+
 /* Font import */
 
 html {
@@ -93,13 +100,6 @@ div.title {
     background-size: 300px 400px;
 }
 
-div.title h1 {
-    text-align: center;
-    font-size: 60px;
-    padding: 50px;
-    color: #c2c2c2;
-}
-
 div.title img.title_logo {
     max-height: 40vh;
 }
@@ -108,7 +108,7 @@ div.title img.title_logo {
 
 
 /** UP ARROW **/
-.btn {
+.btnArrow {
     height: 70px;
     width: 70px;
     background-color: #2b2a2a;
@@ -124,7 +124,7 @@ div.title img.title_logo {
     transition: 0.5s;
 }
 
-.btn.active {
+.btnArrow.active {
     opacity: 1;
 }
 /** END UP ARROW **/
@@ -177,3 +177,9 @@ section.equipe {
     transition-duration: 1s;
 }
 /** END TABLE EQUIPE **/
+
+/** FORMULAIRE **/
+input {
+    max-width: 50%;
+    margin: 5px auto 15px auto; /* top, right, bottom, left */
+}
