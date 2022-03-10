@@ -4,7 +4,7 @@ function main() {
     console.log('Start of the main function !');
 
     // Traitement pour remonter en haut de la page grâce au bouton
-    const btn = document.querySelector('.btn');
+    const btn = document.querySelector('.btnArrow');
 
     /* Remonte en haut de page */
     window.addEventListener('scroll', () => {

@@ -109,8 +109,8 @@ div.title img.title_logo {
 
 /** UP ARROW **/
 .btnArrow {
-    height: 70px;
-    width: 70px;
+    height: 60px;
+    width: 60px;
     background-color: #2b2a2a;
     border-radius: 50%;
     display: flex;

@@ -19,6 +19,18 @@ class JoueurRepository extends ServiceEntityRepository
         parent::__construct($registry, Joueur::class);
     }
 
+    // Retourne les tous les joueurs d'une equipe
+    public function findAllByTeam($id)
+    {
+        return $this->createQueryBuilder('j')
+            ->innerJoin('j.equipe', 'e')
+            ->andWhere('e.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Joueur[] Returns an array of Joueur objects
     //  */

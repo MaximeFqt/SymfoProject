@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} My new website ! - Equipes {% endblock %}
+
+{% block body %}
+
+    <h1> {{ equipe.nom }} </h1>
+
+    <img src="{{ asset('img/'~equipe.ecusson) }}" alt="{{ equipe.nom }}">
+
+    <section class="equipe">
+        <table class="table">
+            <tr>
+                <th> Nom </th>
+                <th> Nationnalité </th>
+                <th> Poste </th>
+                <th> Numéro </th>
+            </tr>
+            {% for j in joueurs %}
+                <tr>
+                    <td> {{ j.nom }} </td>
+                    <td> {{ j.nationnalite }} </td>
+                    <td> {{ j.poste }} </td>
+                    <td> {{ j.numero }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+{% endblock %}

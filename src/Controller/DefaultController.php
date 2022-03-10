@@ -29,6 +29,21 @@ class DefaultController extends AbstractController
         ]);
     }
 
+    #[Route('/equipelist/{id}', name: 'equipeDetails')]
+    public function detailsEquipe($id, ManagerRegistry $managerRegistry): Response
+    {
+        $equipeRepo = new EquipeRepository($managerRegistry);
+        $equipe = $equipeRepo->find($id);
+
+        $joueurRepo = new JoueurRepository($managerRegistry);
+        $joueurs = $joueurRepo->findAllByTeam($id);
+
+        return $this->render('default/equipeDetails.html.twig', [
+            'equipe' => $equipe,
+            "joueurs" => $joueurs
+        ]);
+    }
+
     #[Route('/edit', name: 'edit')]
     public function edit(ManagerRegistry $managerRegistry): Response
     {

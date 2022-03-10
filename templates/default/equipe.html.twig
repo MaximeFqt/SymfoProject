@@ -13,6 +13,7 @@
                 <th> Nom </th>
                 <th> Nombre de joueurs </th>
                 <th> Ecusson </th>
+                <th> Action </th>
             </tr>
             {% for e in equipe %}
                 <tr>
@@ -20,6 +21,7 @@
                     <td> {{ e.nom }} </td>
                     <td> {{ e.nbjoueur }} </td>
                     <td> <img src="{{ asset('img/'~e.ecusson) }}" alt="{{ e.nom }}"> </td>
+                    <td> <a href="{{ path('equipeDetails', {id: e.id}) }}"> Voir plus </a> </td>
                 </tr>
             {% endfor %}
         </table>
