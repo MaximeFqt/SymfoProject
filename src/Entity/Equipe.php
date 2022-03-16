@@ -28,17 +28,7 @@ class Equipe
     private $joueurs;
 
 
-    /**
-     * @param $nom
-     * @param $nbJoueur
-     */
-    public function __construct($nom, $nbJoueur, $ecusson)
-    {
-        $this->nom = $nom;
-        $this->nbJoueur = $nbJoueur;
-        $this->ecusson = $ecusson;
-        $this->joueurs = new ArrayCollection();
-    }
+    public function __construct() {}
 
 
     // GETTERS & SETTERS

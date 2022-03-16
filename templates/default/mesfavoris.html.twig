@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} My new website ! - Favoris {% endblock %}
+
+{% block body %}
+
+    <h1> Favoris </h1>
+
+    {% if alert is defined %}
+        <p class="alert"> {{ alert }} </p>
+    {% endif %}
+
+    <section class="equipe">
+        <table class="table">
+            <tr>
+                <th> Nom </th>
+                <th> Nombre de joueurs </th>
+                <th> Ecusson </th>
+                <th> Suivis depuis le </th>
+                <th> Action </th>
+            </tr>
+            {% for f in favoris %}
+                <tr>
+                    <td> {{ f.equipe.nom }} </td>
+                    <td> {{ f.equipe.nbjoueur }} </td>
+                    <td> <img src="{{ asset('img/'~f.equipe.ecusson) }}" alt="{{ f.equipe.nom }}"> </td>
+                    <td> {{ f.date }} </td>
+                    <td>
+                        <a href="{{ path('equipeDetails', {team_id: f.equipe.id}) }}"> Voir plus </a>
+                        <br>
+                        <a href="{{ path('deleteFav', {user_id: currentUser.id, team_id: f.equipe.id ,fav: f.id} ) }}"> Supprimer </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+{% endblock %}

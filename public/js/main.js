@@ -24,4 +24,11 @@ function main() {
         );
     });
 
+    /* Button to add team on favourite */
+    $(function() {
+        $( "i" ).click(function() {
+            $( "i, span.fav" ).toggleClass( "press", 1000 );
+        });
+    });
+
 }

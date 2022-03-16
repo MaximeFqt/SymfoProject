@@ -6,22 +6,30 @@
 
     <h1> Vous trouverez ici toutes les équipes de Ligue 1 </h1>
 
+    {% if alert is defined %}
+        <p class="alert"> {{ alert }} </p>
+    {% endif %}
+
     <section class="equipe">
         <table class="table">
             <tr>
-                <th> Id </th>
                 <th> Nom </th>
                 <th> Nombre de joueurs </th>
                 <th> Ecusson </th>
-                <th> Action </th>
+                <th> Actions </th>
             </tr>
             {% for e in equipe %}
                 <tr>
-                    <td> {{ e.id }} </td>
                     <td> {{ e.nom }} </td>
                     <td> {{ e.nbjoueur }} </td>
                     <td> <img src="{{ asset('img/'~e.ecusson) }}" alt="{{ e.nom }}"> </td>
-                    <td> <a href="{{ path('equipeDetails', {id: e.id}) }}"> Voir plus </a> </td>
+                    <td>
+                        <a href="{{ path('equipeDetails', {team_id: e.id}) }}"> Voir plus </a>
+                        <br>
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+                            <a href="{{ path('addFav', {team_id: e.id, user_id: currentUser.id}) }}"> Ajouter aux favoris </a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </table>

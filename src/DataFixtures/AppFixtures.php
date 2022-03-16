@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Equipe;
+use App\Entity\Favoris;
 use App\Entity\Joueur;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -18,28 +19,106 @@ class AppFixtures extends Fixture
     {
         // Stats du 01/03/2022
 
-
         // Création des équipes
-        $team1  = new Equipe("Paris St-Germain", 35, "psg.png");        $manager->persist($team1);
-        $team2  = new Equipe("Olympique de Marseille", 28, "om.png");   $manager->persist($team2);
-        $team3  = new Equipe("OGC Nice", 27, "nice.png");               $manager->persist($team3);
-        $team4  = new Equipe("Rennes", 26, "rennes.png");               $manager->persist($team4);
-        $team5  = new Equipe("RC Strasbourg", 24, "strasbourg.png");    $manager->persist($team5);
-        $team6  = new Equipe("RC Lens", 25, "lens.png");                $manager->persist($team6);
-        $team7  = new Equipe("FC Nantes", 26, "nantes.png");            $manager->persist($team7);
-        $team8  = new Equipe("LOSC Lille", 22, "lille.png");            $manager->persist($team8);
-        $team9  = new Equipe("AS Monaco", 28, "monaco.png");            $manager->persist($team9);
-        $team10 = new Equipe("Olympique Lyonnais", 26, "lyon.png");     $manager->persist($team10);
-        $team11 = new Equipe("Montpellier", 25, "montpellier.png");     $manager->persist($team11);
-        $team12 = new Equipe("Brest", 26, "brest.png");                 $manager->persist($team12);
-        $team13 = new Equipe("Reims", 27, "reims.png");                 $manager->persist($team13);
-        $team14 = new Equipe("SCO Angers", 25, "angers.png");           $manager->persist($team14);
-        $team15 = new Equipe("Clermont", 27, "clermont.png");           $manager->persist($team15);
-        $team16 = new Equipe("FC Lorient", 27, "lorient.png");          $manager->persist($team16);
-        $team17 = new Equipe("ESTAC Troyes", 32, "troyes.png");         $manager->persist($team17);
-        $team18 = new Equipe("FC Metz", 29, "metz.png");                $manager->persist($team18);
-        $team19 = new Equipe("AS Saint-Etienne", 30, "asse.png");       $manager->persist($team19);
-        $team20 = new Equipe("Bordeaux", 30, "bordeaux.png");           $manager->persist($team20);
+        $team1  = new Equipe(); $team1->setNom("Paris St-Germain");
+        $team1->setNbJoueur(35);
+        $team1->setEcusson("psg.png");
+        $manager->persist($team1);
+
+        $team2  = new Equipe(); $team2->setNom("Olympique de Marseille");
+        $team2->setNbJoueur(28);
+        $team2->setEcusson("om.png");
+        $manager->persist($team2);
+
+        $team3  = new Equipe(); $team3->setNom("OGC Nice");
+        $team3->setNbJoueur(27);
+        $team3->setEcusson("nice.png");
+        $manager->persist($team3);
+
+        $team4  = new Equipe();  $team4->setNom("Rennes");
+        $team4->setNbJoueur(26);
+        $team4->setEcusson("rennes.png");
+        $manager->persist($team4);
+
+        $team5  = new Equipe(); $team5->setNom("RC Strasbourg");
+        $team5->setNbJoueur(24);
+        $team5->setEcusson("strasbourg.png");
+        $manager->persist($team5);
+
+        $team6  = new Equipe(); $team6->setNom("RC Lens");
+        $team6->setNbJoueur(25);
+        $team6->setEcusson("lens.png");
+        $manager->persist($team6);
+
+        $team7  = new Equipe(); $team7->setNom("FC Nantes");
+        $team7->setNbJoueur(26);
+        $team7->setEcusson("nantes.png");
+        $manager->persist($team7);
+
+        $team8  = new Equipe(); $team8->setNom("LOSC Lille");
+        $team8->setNbJoueur(22);
+        $team8->setEcusson("lille.png");
+        $manager->persist($team8);
+
+        $team9  = new Equipe(); $team9->setNom("AS Monaco");
+        $team9->setNbJoueur(28);
+        $team9->setEcusson("monaco.png");
+        $manager->persist($team9);
+
+        $team10 = new Equipe(); $team10->setNom("Olympique Lyonnais");
+        $team10->setNbJoueur(26);
+        $team10->setEcusson("lyon.png");
+        $manager->persist($team10);
+
+        $team11 = new Equipe(); $team11->setNom("Montpellier");
+        $team11->setNbJoueur(25);
+        $team11->setEcusson("montpellier.png");
+        $manager->persist($team11);
+
+        $team12 = new Equipe(); $team12->setNom("Brest");
+        $team12->setNbJoueur(26);
+        $team12->setEcusson("brest.png");
+        $manager->persist($team12);
+
+        $team13 = new Equipe(); $team13->setNom("Reims");
+        $team13->setNbJoueur(27);
+        $team13->setEcusson("reims.png");
+        $manager->persist($team13);
+
+        $team14 = new Equipe(); $team14->setNom("SCO Angers");
+        $team14->setNbJoueur(25);
+        $team14->setEcusson("angers.png");
+        $manager->persist($team14);
+
+        $team15 = new Equipe();$team15->setNom("Clermont");
+        $team15->setNbJoueur(27);
+        $team15->setEcusson("clermont.png");
+        $manager->persist($team15);
+
+        $team16 = new Equipe(); $team16->setNom("FC Lorient");
+        $team16->setNbJoueur(27);
+        $team16->setEcusson("lorient.png");
+        $manager->persist($team16);
+
+        $team17 = new Equipe(); $team17->setNom("ESTAC Troyes");
+        $team17->setNbJoueur(32);
+        $team17->setEcusson("troyes.png");
+        $manager->persist($team17);
+
+        $team18 = new Equipe(); $team18->setNom("FC Metz");
+        $team18->setNbJoueur(29);
+        $team18->setEcusson("metz.png");
+        $manager->persist($team18);
+
+        $team19 = new Equipe(); $team19->setNom("AS Saint-Etienne");
+        $team19->setNbJoueur(30);
+        $team19->setEcusson("asse.png");
+        $manager->persist($team19);
+
+        $team20 = new Equipe(); $team20->setNom("Bordeaux Troyes");
+        $team20->setNbJoueur(30);
+        $team20->setEcusson("bordeaux.png");
+        $manager->persist($team20);
 
 
         // Création des joueurs (nom, nationnalite, poste, numero)
@@ -294,10 +373,10 @@ class AppFixtures extends Fixture
         /* USER */
         $usr = new User();
 
-        $usr->setEmail("user1@email.fr");
+        $usr->setEmail("admin@email.fr");
         $usr->setPassword(
             $this->passwordHasher->hashPassword(
-                $usr, "user1"
+                $usr, "admin"
             )
         );
         $usr->setRoles(["ROLE_ADMIN"]); $manager->persist($usr);
@@ -311,6 +390,14 @@ class AppFixtures extends Fixture
             )
         );
         $usr2->setRoles(["ROLE_USER"]); $manager->persist($usr2);
+
+        /* FAVORIS */
+        $fav = new Favoris();
+        $fav->setEquipe($team1);
+        $fav->setUser($usr2);
+        $fav->setDate('%d %B %Y');
+
+        $manager->persist($fav);
 
         $manager->flush();
     }

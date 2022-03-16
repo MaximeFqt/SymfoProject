@@ -152,6 +152,11 @@ footer p#copy {
 
 
 /** TABLE EQUIPE **/
+p.alert {
+    font-size: 150%;
+    font-weight: bold;
+}
+
 section.equipe {
     margin: 50px;
 }
@@ -178,8 +183,11 @@ section.equipe {
 }
 /** END TABLE EQUIPE **/
 
-/** FORMULAIRE **/
+
+
+/** FORM **/
 input {
     max-width: 50%;
     margin: 5px auto 15px auto; /* top, right, bottom, left */
 }
+/** END FORM **/
