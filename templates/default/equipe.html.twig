@@ -6,8 +6,8 @@
 
     <h1> Vous trouverez ici toutes les équipes de Ligue 1 </h1>
 
-    {% if alert is defined %}
-        <p class="alert"> {{ alert }} </p>
+    {% if app.session.get('alert') is defined %}
+        <p class="alert"> {{app.session.get('alert')}} </p>
     {% endif %}
 
     <section class="equipe">
@@ -27,7 +27,7 @@
                         <a href="{{ path('equipeDetails', {team_id: e.id}) }}"> Voir plus </a>
                         <br>
                         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
-                            <a href="{{ path('addFav', {team_id: e.id, user_id: currentUser.id}) }}"> Ajouter aux favoris </a>
+                            <a href="{{ path('addFav', {team_id: e.id}) }}"> Ajouter aux favoris </a>
                         {% endif %}
                     </td>
                 </tr>

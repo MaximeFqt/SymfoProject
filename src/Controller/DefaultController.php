@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Favoris;
+use App\Entity\Image;
+use App\Form\ImageType;
 use App\Repository\EquipeRepository;
 use App\Repository\FavorisRepository;
 use App\Repository\JoueurRepository;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +39,7 @@ class DefaultController extends AbstractController
      * @return Response
      */
     #[Route('/equipelist', name: 'equipe')]
-    public function equipe(ManagerRegistry $managerRegistry): Response
+    public function equipe(ManagerRegistry $managerRegistry, Request $request): Response
     {
         $equipeRepo = new EquipeRepository($managerRegistry);
         $equipe = $equipeRepo->findAll();
@@ -77,13 +79,15 @@ class DefaultController extends AbstractController
     /**
      * AJOUT D'UNE EQUIPE EN FAVORIS
      * @param $team_id
-     * @param $user_id
      * @param ManagerRegistry $managerRegistry
      * @return Response
      */
-    #[Route('/equipelist/{team_id}/{user_id}', name: 'addFav')]
-    public function addFav($team_id, $user_id, ManagerRegistry $managerRegistry): Response
+    #[Route('/equipelist/{team_id}/add', name: 'addFav')]
+    #[IsGranted("ROLE_USER")]
+    public function addFav($team_id, ManagerRegistry $managerRegistry, Request $request): Response
     {
+        $user_id = $this->getUser()->getId();
+
         $entityManager = $this->getDoctrine()->getManager();
 
         // Récupère l'équipe
@@ -101,14 +105,14 @@ class DefaultController extends AbstractController
             // Déjà dans les favoris
             if ($fav[$i]->getEquipe()->getId() == $team_id) {
                 // On stoppe la boucle est on redirige
-                $alert = "Cette équipe (".$team->getNom().") fait déjà partie de vos favoris !";
-                return $this->render('default/equipe.html.twig', [
-                    'equipe' => $equipeRepo->findAll(),
-                    'alert' => $alert,
-                    'currentUser' => $this->getUser()
-                ]);
+
+                $request->getSession()->set("alert", "Cette équipe (".$team->getNom().") fait déjà partie de vos favoris !");
+
+                return $this->redirectToRoute('equipe');
             }
         }
+
+        $request->getSession()->set("alert", "Ajout de ".$team->getNom()." dans vos favoris !");
 
         $equipe = new Favoris();
         $equipe->setEquipe($team);
@@ -118,28 +122,26 @@ class DefaultController extends AbstractController
         $entityManager->persist($equipe);
         $entityManager->flush();
 
-        $alert = "L'équipe (".$team->getNom().") a été ajoutée à vos favoris !";
-
         return $this->redirectToRoute('equipe');
     }
 
 
     /**
      * SUPPRIME UN FAVORIS
-     * @param $user_id
      * @param Favoris $fav
      * @param ManagerRegistry $managerRegistry
      * @return Response
      */
-    #[Route('/mesfavoris/{user_id}/{team_id}/{fav}', name: 'deleteFav')]
-    public function deleteFav($user_id, Favoris $fav, ManagerRegistry $managerRegistry): Response
+    #[Route('/mesfavoris/{team_id}/{fav}', name: 'deleteFav')]
+    #[IsGranted("ROLE_USER")]
+    public function deleteFav(Favoris $fav, ManagerRegistry $managerRegistry, Request $request): Response
     {
-        $favRepo = new FavorisRepository($managerRegistry);
-        $favoris = $favRepo->findFavByUser($user_id);
+        $user_id = $this->getUser()->getId();
 
+        $favRepo = new FavorisRepository($managerRegistry);
         $favRepo->deleteFav($fav->getId());
 
-        $alert = "L'équipe (".$fav->getEquipe()->getNom().") a été supprimée";
+        $request->getSession()->set("alert", "L'équipe ".$fav->getEquipe()->getNom()." n'est plus dans vos favoris !");
 
         return $this->redirectToRoute("mesfavoris", ["user_id" => $user_id]);
     }
@@ -148,18 +150,40 @@ class DefaultController extends AbstractController
 
     /**
      * AFFICHAGE DES FAVORIS USER
-     * @param $user_id
      * @param ManagerRegistry $managerRegistry
      * @return Response
      */
-    #[Route('/mesfavoris/{user_id}', name: 'mesfavoris')]
-    public function mesfavoris($user_id, ManagerRegistry $managerRegistry): Response
+    #[Route('/mesfavoris', name: 'mesfavoris')]
+    #[IsGranted("ROLE_USER")]
+    public function mesfavoris(ManagerRegistry $managerRegistry, Request $request): Response
     {
+        $user_id = $this->getUser()->getId();
+
         $favRepo = new FavorisRepository($managerRegistry);
         $fav = $favRepo->findFavByUser($user_id);
         return $this->render('default/mesfavoris.html.twig', [
             'favoris' => $fav,
             'currentUser' => $this->getUser()
+        ]);
+    }
+
+
+
+    #[Route("/admin", name:"addImage")]
+    #[IsGranted("ROLE_ADMIN")]
+    public function ajoutImage(Request $request, ManagerRegistry $managerRegistry): Response
+    {
+        $image = new Image();
+        $form = $this->createForm(ImageType::class, $image);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $managerRegistry->getManager();
+            $em->persist($image);
+            $em->flush();
+            return $this->redirectToRoute('homepage');
+        }
+        return $this->render('default/ajoutImage.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

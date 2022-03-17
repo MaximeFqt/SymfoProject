@@ -6,6 +6,8 @@ use App\Repository\EquipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EquipeRepository::class)]
 class Equipe
@@ -13,19 +15,21 @@ class Equipe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
     private $nom;
 
     #[ORM\Column(type: 'integer')]
+    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
     private $nbJoueur;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\OneToOne(targetEntity: Image::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
     private $ecusson;
-
-    #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: Joueur::class)]
-    private $joueurs;
 
 
     public function __construct() {}
@@ -62,30 +66,6 @@ class Equipe
         return $this;
     }
 
-    public function getEcusson(): ?string
-    {
-        return $this->ecusson;
-    }
-
-    public function setEcusson(?string $ecusson): self
-    {
-        $this->ecusson = $ecusson;
-
-        return $this;
-    }
-
-    public function getJoueurs(): ?Joueur
-    {
-        return $this->joueurs;
-    }
-
-    public function setJoueurs(?Joueur $joueurs): self
-    {
-        $this->joueurs = $joueurs;
-
-        return $this;
-    }
-
     public function addJoueur(Joueur $joueur): self
     {
         if (!$this->joueurs->contains($joueur)) {
@@ -107,4 +87,17 @@ class Equipe
 
         return $this;
     }
+
+    public function getEcusson(): ?Image
+    {
+        return $this->ecusson;
+    }
+
+    public function setEcusson(Image $ecusson): self
+    {
+        $this->ecusson = $ecusson;
+
+        return $this;
+    }
+
 }

@@ -31,7 +31,7 @@
                         <li> <a href="{{ path('accueil') }}"> Accueil </a> </li>
                         <li> <a href="{{ path('equipe') }}"> Equipes </a> </li>
                         {% if is_granted('ROLE_USER') %}
-                            <li> <a href="{{ path('mesfavoris', {user_id: currentUser.id}) }}"> Mes favoris </a> </li>
+                            <li> <a href="{{ path('mesfavoris') }}"> Mes favoris </a> </li>
                         {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
                             <li> <a href="{{ path('admin') }}"> Admin </a> </li>

@@ -6,8 +6,8 @@
 
     <h1> Favoris </h1>
 
-    {% if alert is defined %}
-        <p class="alert"> {{ alert }} </p>
+    {% if app.session.get('alert') is defined %}
+        <p class="alert"> {{app.session.get('alert')}} </p>
     {% endif %}
 
     <section class="equipe">

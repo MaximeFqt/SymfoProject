@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\FavorisRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: FavorisRepository::class)]
 class Favoris
@@ -11,15 +12,19 @@ class Favoris
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups("fav:read")]
     private $id;
 
     #[ORM\OneToOne(targetEntity: Equipe::class, cascade: ['persist', 'remove'])]
+    #[Groups("fav:read")]
     private $equipe;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'favoris')]
+    #[Groups("fav:read")]
     private $user;
 
     #[ORM\Column(type: 'text')]
+    #[Groups("fav:read")]
     private $date;
 
     public function getId(): ?int

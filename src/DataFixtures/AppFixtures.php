@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Equipe;
 use App\Entity\Favoris;
+use App\Entity\Image;
 use App\Entity\Joueur;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -19,105 +20,136 @@ class AppFixtures extends Fixture
     {
         // Stats du 01/03/2022
 
+        // Ajouter les images d'equipe ici
+        // Création des Ecussons
+        $ecu1 = new Image();        $ecu1->setNom('PSG');               $ecu1->setUrl('psg.png');
+        $ecu2 = new Image();        $ecu2->setNom('OM');                $ecu2->setUrl('om.png');
+        $ecu3 = new Image();        $ecu3->setNom('Nice');              $ecu3->setUrl('nice.png');
+        $ecu4 = new Image();        $ecu4->setNom('Rennes');            $ecu4->setUrl('rennes.png');
+        $ecu5 = new Image();        $ecu5->setNom('Strasbourg');        $ecu5->setUrl('strasbourg.png');
+        $ecu6 = new Image();        $ecu6->setNom('Lens');              $ecu6->setUrl('lens.png');
+        $ecu7 = new Image();        $ecu7->setNom('Nantes');            $ecu7->setUrl('nantes.png');
+        $ecu8 = new Image();        $ecu8->setNom('Lille');             $ecu8->setUrl('lille.png');
+        $ecu9 = new Image();        $ecu9->setNom("Monaco");            $ecu9->setUrl("monaco.png");
+        $ecu10 = new Image();       $ecu10->setNom("Lyon");             $ecu10->setUrl("lyon.png");
+        $ecu11 = new Image();       $ecu11->setNom("Montpellier");      $ecu11->setUrl("montpellier.png");
+        $ecu12 = new Image();       $ecu12->setNom("Brest");            $ecu12->setUrl("brest.png");
+        $ecu13 = new Image();       $ecu13->setNom("Reims");            $ecu13->setUrl("reims.png");
+        $ecu14 = new Image();       $ecu14->setNom("Angers");           $ecu14->setUrl("angers.png");
+        $ecu15 = new Image();       $ecu15->setNom("Clermont");         $ecu15->setUrl("clermont.png");
+        $ecu16 = new Image();       $ecu16->setNom("Lorient");          $ecu16->setUrl("lorient.png");
+        $ecu17 = new Image();       $ecu17->setNom("Troyes");           $ecu17->setUrl("troyes.png");
+        $ecu18 = new Image();       $ecu18->setNom("Metz");             $ecu18->setUrl("metz.png");
+        $ecu19 = new Image();       $ecu19->setNom("St-Etienne");       $ecu19->setUrl("asse.png");
+        $ecu20 = new Image();       $ecu20->setNom("Bordeaux");         $ecu20->setUrl("bordeaux.png");
+
+        $manager->persist($ecu1);  $manager->persist($ecu2);  $manager->persist($ecu3);  $manager->persist($ecu4);
+        $manager->persist($ecu5);  $manager->persist($ecu6);  $manager->persist($ecu7);  $manager->persist($ecu8);
+        $manager->persist($ecu9);  $manager->persist($ecu10); $manager->persist($ecu11); $manager->persist($ecu12);
+        $manager->persist($ecu13); $manager->persist($ecu14); $manager->persist($ecu15); $manager->persist($ecu16);
+        $manager->persist($ecu17); $manager->persist($ecu18); $manager->persist($ecu19); $manager->persist($ecu20);
+
+        // Faire une relation Equipe/image pour récupérer le nom
+
         // Création des équipes
         $team1  = new Equipe(); $team1->setNom("Paris St-Germain");
         $team1->setNbJoueur(35);
-        $team1->setEcusson("psg.png");
+        $team1->setEcusson($ecu1);
         $manager->persist($team1);
 
         $team2  = new Equipe(); $team2->setNom("Olympique de Marseille");
         $team2->setNbJoueur(28);
-        $team2->setEcusson("om.png");
+        $team2->setEcusson($ecu2);
         $manager->persist($team2);
 
         $team3  = new Equipe(); $team3->setNom("OGC Nice");
         $team3->setNbJoueur(27);
-        $team3->setEcusson("nice.png");
+        $team3->setEcusson($ecu3);
         $manager->persist($team3);
 
         $team4  = new Equipe();  $team4->setNom("Rennes");
         $team4->setNbJoueur(26);
-        $team4->setEcusson("rennes.png");
+        $team4->setEcusson($ecu4);
         $manager->persist($team4);
 
         $team5  = new Equipe(); $team5->setNom("RC Strasbourg");
         $team5->setNbJoueur(24);
-        $team5->setEcusson("strasbourg.png");
+        $team5->setEcusson($ecu5);
         $manager->persist($team5);
 
         $team6  = new Equipe(); $team6->setNom("RC Lens");
         $team6->setNbJoueur(25);
-        $team6->setEcusson("lens.png");
+        $team6->setEcusson($ecu6);
         $manager->persist($team6);
 
         $team7  = new Equipe(); $team7->setNom("FC Nantes");
         $team7->setNbJoueur(26);
-        $team7->setEcusson("nantes.png");
+        $team7->setEcusson($ecu7);
         $manager->persist($team7);
 
         $team8  = new Equipe(); $team8->setNom("LOSC Lille");
         $team8->setNbJoueur(22);
-        $team8->setEcusson("lille.png");
+        $team8->setEcusson($ecu8);
         $manager->persist($team8);
 
         $team9  = new Equipe(); $team9->setNom("AS Monaco");
         $team9->setNbJoueur(28);
-        $team9->setEcusson("monaco.png");
+        $team9->setEcusson($ecu9);
         $manager->persist($team9);
 
         $team10 = new Equipe(); $team10->setNom("Olympique Lyonnais");
         $team10->setNbJoueur(26);
-        $team10->setEcusson("lyon.png");
+        $team10->setEcusson($ecu10);
         $manager->persist($team10);
 
         $team11 = new Equipe(); $team11->setNom("Montpellier");
         $team11->setNbJoueur(25);
-        $team11->setEcusson("montpellier.png");
+        $team11->setEcusson($ecu11);
         $manager->persist($team11);
 
         $team12 = new Equipe(); $team12->setNom("Brest");
         $team12->setNbJoueur(26);
-        $team12->setEcusson("brest.png");
+        $team12->setEcusson($ecu12);
         $manager->persist($team12);
 
         $team13 = new Equipe(); $team13->setNom("Reims");
         $team13->setNbJoueur(27);
-        $team13->setEcusson("reims.png");
+        $team13->setEcusson($ecu13);
         $manager->persist($team13);
 
         $team14 = new Equipe(); $team14->setNom("SCO Angers");
         $team14->setNbJoueur(25);
-        $team14->setEcusson("angers.png");
+        $team14->setEcusson($ecu14);
         $manager->persist($team14);
 
         $team15 = new Equipe();$team15->setNom("Clermont");
         $team15->setNbJoueur(27);
-        $team15->setEcusson("clermont.png");
+        $team15->setEcusson($ecu15);
         $manager->persist($team15);
 
         $team16 = new Equipe(); $team16->setNom("FC Lorient");
         $team16->setNbJoueur(27);
-        $team16->setEcusson("lorient.png");
+        $team16->setEcusson($ecu16);
         $manager->persist($team16);
 
         $team17 = new Equipe(); $team17->setNom("ESTAC Troyes");
         $team17->setNbJoueur(32);
-        $team17->setEcusson("troyes.png");
+        $team17->setEcusson($ecu17);
         $manager->persist($team17);
 
         $team18 = new Equipe(); $team18->setNom("FC Metz");
         $team18->setNbJoueur(29);
-        $team18->setEcusson("metz.png");
+        $team18->setEcusson($ecu18);
         $manager->persist($team18);
 
         $team19 = new Equipe(); $team19->setNom("AS Saint-Etienne");
         $team19->setNbJoueur(30);
-        $team19->setEcusson("asse.png");
+        $team19->setEcusson($ecu19);
         $manager->persist($team19);
 
-        $team20 = new Equipe(); $team20->setNom("Bordeaux Troyes");
+        $team20 = new Equipe(); $team20->setNom("Bordeaux");
         $team20->setNbJoueur(30);
-        $team20->setEcusson("bordeaux.png");
+        $team20->setEcusson($ecu20);
         $manager->persist($team20);
 
 
@@ -127,6 +159,8 @@ class AppFixtures extends Fixture
               PSG
          ************ */
 
+        // Entraineur
+        $psg0  = new Joueur('Mauricio Pochetiino', "Argentine", "Manager", null, $team1);               $manager->persist($psg0);
         // Gardiens
         $psg1  = new Joueur("Gianluigi Donnaruma", "Italie", "Gardien", 50, $team1);                $manager->persist($psg1);
         $psg2  = new Joueur("Keylor Navas", "Costa Rica", "Gardien", 1, $team1);                    $manager->persist($psg2);
@@ -171,6 +205,8 @@ class AppFixtures extends Fixture
               OM
          ************ */
 
+        // Entraineur
+        $om0  = new Joueur('Jorge Sampaoli', "Argentine", "Manager", null, $team2);             $manager->persist($om0);
         // Gardiens
         $om1  = new Joueur("Pau lopez", "Espagne", "Gardien", 16, $team2);                      $manager->persist($om1);
         $om2  = new Joueur("Steve Mandanda", "France", "Gardien", 30, $team2);                  $manager->persist($om2);
@@ -208,6 +244,8 @@ class AppFixtures extends Fixture
               Nice
          ************ */
 
+        // Entraineur
+        $nice0  = new Joueur('Christophe Galtier', "France", "Manager", null, $team3);      $manager->persist($nice0);
         // Gardiens
         $nice1  = new Joueur("Walter Benitez", "Argentine", "Gardien", 40, $team3);         $manager->persist($nice1);
         $nice2  = new Joueur("Marcin Bulka", "Pologne", "Gardien", 1, $team3);              $manager->persist($nice2);
@@ -217,6 +255,8 @@ class AppFixtures extends Fixture
              Rennes
          ************ */
 
+        // Entraineur
+        $rennes0  = new Joueur('Bruno Génésio', "France", "Manager", null, $team4);             $manager->persist($rennes0);
         // Gardiens
         $rennes1 = new Joueur("Alfred Gomis", "Sénégal", "Gardien", 16, $team4);    $manager->persist($rennes1);
         $rennes2 = new Joueur("Gogan Alemdar", "Turquie", "Gardien", 40, $team4);   $manager->persist($rennes2);
@@ -227,6 +267,8 @@ class AppFixtures extends Fixture
            Strasbourg
          ************ */
 
+        // Entraineur
+        $star0  = new Joueur('Julien Stéphan', "France", "Manager", null, $team5);             $manager->persist($star0);
         // Gardiens
         $stra1 = new Joueur("Matz Sels", "Belgique", "Gardien", 1, $team5);     $manager->persist($stra1);
         $stra2 = new Joueur("Eiji Kawashima", "Japon", "Gardien", 16, $team5);  $manager->persist($stra2);
@@ -235,6 +277,8 @@ class AppFixtures extends Fixture
               Lens
          ************ */
 
+        // Entraineur
+        $lens0  = new Joueur('Franck Haise', "France", "Manager", null, $team6);             $manager->persist($lens0);
         // Gardiens
         $lens1 = new Joueur("Wuilker Fariñez", "Venezuela", "Gardien", 1, $team6);      $manager->persist($lens1);
         $lens2 = new Joueur("Jean-Louis Leca", "France", "Gardien", 16, $team6);        $manager->persist($lens2);
@@ -244,6 +288,8 @@ class AppFixtures extends Fixture
              Nantes
          ************ */
 
+        // Entraineur
+        $nantes0  = new Joueur('Antoine Kombouaré', "France", "Manager", null, $team7);             $manager->persist($nantes0);
         // Gardiens
         $nantes1 = new Joueur("Alban Lafont", "France", "Gardien", 1, $team7);      $manager->persist($nantes1);
         $nantes2 = new Joueur("Rémy Descamps", "France", "Gardien", 16, $team7);    $manager->persist($nantes2);
@@ -253,6 +299,8 @@ class AppFixtures extends Fixture
               Lille
          ************ */
 
+        // Entraineur
+        $lille0  = new Joueur('Jocelyn Gourvennec', "France", "Manager", null, $team8);             $manager->persist($lille0);
         // Gardiens
         $lille1 = new Joueur("Ivo Grbic", "Croatie", "Gardien", 1, $team8);         $manager->persist($lille1);
         $lille2 = new Joueur("Léo Jardim", "Brésil", "Gardien", 30, $team8);        $manager->persist($lille2);
@@ -262,6 +310,8 @@ class AppFixtures extends Fixture
              Monaco
          ************ */
 
+        // Entraineur
+        $mona0  = new Joueur('Philippe Clement', "Belgique", "Manager", null, $team9);             $manager->persist($mona0);
         // Gardiens
         $mona1 = new Joueur("Alexander Nübel", "Allemagne", "Gardien", 16, $team9); $manager->persist($mona1);
         $mona2 = new Joueur("Radoslaw Majecki", "Pologne", "Gardien", 1, $team9);   $manager->persist($mona2);
@@ -271,6 +321,8 @@ class AppFixtures extends Fixture
               Lyon
          ************ */
 
+        // Entraineur
+        $lyon0  = new Joueur('Peter Bosz', "Pays-Bas", "Manager", null, $team10);             $manager->persist($lyon0);
         // Gardiens
         $lyon1 = new Joueur("Anthony Lopes", "Portugal", "Gardien", 1, $team10);            $manager->persist($lyon1);
         $lyon2 = new Joueur("Julian Pollersbeck", "Allemange", "Gardien", 30, $team10);     $manager->persist($lyon2);
@@ -280,6 +332,8 @@ class AppFixtures extends Fixture
            Montpellier
          ************ */
 
+        // Entraineur
+        $mont0  = new Joueur('Olivier Dall\'Oglio', "France", "Manager", null, $team11);             $manager->persist($mont0);
         // Gardiens
         $mont1 = new Joueur("Jonas Omlin", "Suisse", "Gardien", 1, $team11);        $manager->persist($mont1);
         $mont2 = new Joueur("Dimitry Bertaud", "France", "Gardien", 16, $team11);   $manager->persist($mont2);
@@ -289,6 +343,8 @@ class AppFixtures extends Fixture
              Brest
          ************ */
 
+        // Entraineur
+        $brest0  = new Joueur('Michel Der Zakarian', "Arménie", "Manager", null, $team12);             $manager->persist($brest0);
         // Gardiens
         $brest1 = new Joueur("Marco Bizot", "Pays-Bas", "Gardien", 40, $team12);        $manager->persist($brest1);
         $brest2 = new Joueur("Gautier Larsonneur", "France", "Gardien", 1, $team12);    $manager->persist($brest2);
@@ -299,6 +355,8 @@ class AppFixtures extends Fixture
              Reims
          ************ */
 
+        // Entraineur
+        $reims0  = new Joueur('Óscar García', "Espagne", "Manager", null, $team13);             $manager->persist($reims0);
         // Gardiens
         $reims1 = new Joueur("Predrag Rajkovic", "Serbie", "Gardien", 1, $team13);      $manager->persist($reims1);
         $reims2 = new Joueur("Yehvann Diouf", "France", "Gardien", 16, $team13);        $manager->persist($reims2);
@@ -308,6 +366,8 @@ class AppFixtures extends Fixture
              Angers
          ************ */
 
+        // Entraineur
+        $angers0  = new Joueur('Gérald Baticle', "France", "Manager", null, $team14);             $manager->persist($angers0);
         // Gardiens
         $angers1 = new Joueur("Danijel Petkovic", "Maroc", "Gardien", 30, $team14); $manager->persist($angers1);
         $angers2 = new Joueur("Anthony Mandréa", "France", "Gardien", 16, $team14); $manager->persist($angers2);
@@ -316,6 +376,8 @@ class AppFixtures extends Fixture
             Clermont
          ************ */
 
+        // Entraineur
+        $cler0  = new Joueur('Pascal Gastien', "France", "Manager", null, $team15);             $manager->persist($cler0);
         // Gardiens
         $cler1 = new Joueur("Arthur Desmas", "France", "Gardien", 1, $team15);      $manager->persist($cler1);
         $cler2 = new Joueur("Ouparine Djoco", "France", "Gardien", 40, $team15);    $manager->persist($cler2);
@@ -325,6 +387,8 @@ class AppFixtures extends Fixture
             Lorient
          ************ */
 
+        // Entraineur
+        $lor0  = new Joueur('Christophe Pélissier', "France", "Manager", null, $team16);             $manager->persist($lor0);
         // Gardiens
         $lor1 = new Joueur("Paul Nardi", "France", "Gardien", 30, $team16);         $manager->persist($lor1);
         $lor2 = new Joueur("Matthieu Dreye", "France", "Gardien", 1, $team16);      $manager->persist($lor2);
@@ -335,6 +399,8 @@ class AppFixtures extends Fixture
              Troyes
          ************ */
 
+        // Entraineur
+        $tro0  = new Joueur('Bruno Irles', "France", "Manager", null, $team17);             $manager->persist($tro0);
         // Gardiens
         $tro1 = new Joueur("Gauthier Gallon", "France", "Gardien", 30, $team17);    $manager->persist($tro1);
         $tro2 = new Joueur("Jessy Moulin", "France", "Gardien", 40, $team17);       $manager->persist($tro2);
@@ -345,6 +411,8 @@ class AppFixtures extends Fixture
               Metz
          ************ */
 
+        // Entraineur
+        $metz0  = new Joueur('Frédéric Antonetti', "France", "Manager", null, $team18);             $manager->persist($metz0);
         // Gardiens
         $metz1 = new Joueur("Alexandre Oukidja", "Algérie", "Gardien", 16, $team18);    $manager->persist($metz1);
         $metz2 = new Joueur("Marc-Aurèle Caillard", "France", "Gardien", 30, $team18);  $manager->persist($metz2);
@@ -355,6 +423,8 @@ class AppFixtures extends Fixture
           Saint-Etienne
          ************ */
 
+        // Entraineur
+        $asse0  = new Joueur('Pascal Dupraz', "France", "Manager", null, $team19);             $manager->persist($asse0);
         // Gardiens
         $asse1 = new Joueur("Etienne Green", "Angleterre", "Gardien", 40, $team19); $manager->persist($asse1);
         $asse2 = new Joueur("Paul Bernardoni", "France", "Gardien", 50, $team19);   $manager->persist($asse2);
@@ -364,6 +434,8 @@ class AppFixtures extends Fixture
             Bordeaux
          ************ */
 
+        // Entraineur
+        $bord0  = new Joueur('David Guion', "France", "Manager", null, $team20);             $manager->persist($bord0);
         // Gardiens
         $bord1 = new Joueur("Benoît Costil", "France", "Gardien", 1, $team20);      $manager->persist($bord1);
         $bord2 = new Joueur("Gaëtan Poussin", "France", "Gardien", 16, $team20);    $manager->persist($bord2);

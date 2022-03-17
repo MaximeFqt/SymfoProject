@@ -31,7 +31,6 @@
         - un **id** unique
         - un **numéro** unique par équipe
         - un **nom**
-        - un **prénom**
         - un **poste**
         - une **nationnalité**
         - une **equipe** (OneToOne)

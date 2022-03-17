@@ -6,6 +6,7 @@ use App\Repository\JoueurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: JoueurRepository::class)]
 class Joueur
@@ -13,22 +14,28 @@ class Joueur
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups("joueur:read")]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups("joueur:read")]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups("joueur:read")]
     private $nationnalite;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups("joueur:read")]
     private $poste;
 
     #[ORM\Column(type: 'integer', nullable: true)]
+    #[Groups("joueur:read")]
     private $numero;
 
-    #[ORM\ManyToOne(targetEntity: Equipe::class, inversedBy: 'joueurs')]
+    #[ORM\ManyToOne(targetEntity: Equipe::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups("joueur:read")]
     private $equipe;
 
 
@@ -102,33 +109,11 @@ class Joueur
     }
 
     /**
-     * @return Collection<int, Equipe>
+     * @return Equipe
      */
-    public function getEquipe(): Collection
+    public function getEquipe(): Equipe
     {
         return $this->equipe;
-    }
-
-    public function addEquipe(Equipe $equipe): self
-    {
-        if (!$this->equipe->contains($equipe)) {
-            $this->equipe[] = $equipe;
-            $equipe->setJoueurs($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEquipe(Equipe $equipe): self
-    {
-        if ($this->equipe->removeElement($equipe)) {
-            // set the owning side to null (unless already changed)
-            if ($equipe->getJoueurs() === $this) {
-                $equipe->setJoueurs(null);
-            }
-        }
-
-        return $this;
     }
 
     public function setEquipe(?Equipe $equipe): self
