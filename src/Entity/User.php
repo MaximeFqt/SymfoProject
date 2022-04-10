@@ -18,11 +18,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["user:read", "fav:read"])]
+    #[Groups(["user:read", "fav:read", "all:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    #[Groups(["user:read", "fav:read"])]
+    #[Groups(["user:read", "fav:read", "all:read"])]
     private $email;
 
     #[ORM\Column(type: 'json')]

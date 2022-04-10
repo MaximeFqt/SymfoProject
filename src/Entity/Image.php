@@ -15,15 +15,15 @@ class Image
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read"])]
+    #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read", "all:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read"])]
+    #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read", "all:read"])]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read"])]
+    #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read", "all:read"])]
     private $url;
 
     /**

@@ -15,20 +15,20 @@ class Equipe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
+    #[Groups(["equipe:read", "fav:read", "joueur:read", "all:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
+    #[Groups(["equipe:read", "fav:read", "joueur:read", "all:read"])]
     private $nom;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
+    #[Groups(["equipe:read", "fav:read", "joueur:read", "all:read"])]
     private $nbJoueur;
 
     #[ORM\OneToOne(targetEntity: Image::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["equipe:read", "fav:read", "joueur:read"])]
+    #[Groups(["equipe:read", "fav:read", "joueur:read", "all:read"])]
     private $ecusson;
 
 

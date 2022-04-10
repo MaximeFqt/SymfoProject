@@ -14,28 +14,28 @@ class Joueur
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups("joueur:read")]
+    #[Groups(["joueur:read", "all:read"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups("joueur:read")]
+    #[Groups(["joueur:read", "all:read"])]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups("joueur:read")]
+    #[Groups(["joueur:read", "all:read"])]
     private $nationnalite;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups("joueur:read")]
+    #[Groups(["joueur:read", "all:read"])]
     private $poste;
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    #[Groups("joueur:read")]
+    #[Groups(["joueur:read", "all:read"])]
     private $numero;
 
     #[ORM\ManyToOne(targetEntity: Equipe::class)]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups("joueur:read")]
+    #[Groups(["joueur:read", "all:read"])]
     private $equipe;
 
 

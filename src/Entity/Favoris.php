@@ -12,19 +12,19 @@ class Favoris
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups("fav:read")]
+    #[Groups(["fav:read", "all:read"])]
     private $id;
 
     #[ORM\OneToOne(targetEntity: Equipe::class, cascade: ['persist', 'remove'])]
-    #[Groups("fav:read")]
+    #[Groups(["fav:read", "all:read"])]
     private $equipe;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'favoris')]
-    #[Groups("fav:read")]
+    #[Groups(["fav:read", "all:read"])]
     private $user;
 
     #[ORM\Column(type: 'text')]
-    #[Groups("fav:read")]
+    #[Groups(["fav:read", "all:read"])]
     private $date;
 
     public function getId(): ?int

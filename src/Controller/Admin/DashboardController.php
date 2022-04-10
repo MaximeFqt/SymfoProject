@@ -47,5 +47,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Equipe', 'fas fa-list', Equipe::class);
         yield MenuItem::linkToCrud('Joueur', 'fas fa-list', Joueur::class);
         yield MenuItem::linkToCrud('Image' , 'fas fa-list', Image::class );
+        yield MenuItem::linktoRoute('Retour au site', 'fas fa-home', 'accueil');
+
     }
 }
