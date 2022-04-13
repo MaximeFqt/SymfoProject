@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use ApiPlatform\Core\Validator\ValidatorInterface;
 use App\Entity\Equipe;
 use App\Entity\Image;
 use App\Entity\Joueur;
@@ -116,7 +117,11 @@ class ApiController extends AbstractController
 
     // Envoie de json qui va être convertis dans la bdd
     #[Route('/apiPostEquipe', name: 'apiPostEquipe', methods: 'POST')]
-    public function createEquipe(Request $request, SerializerInterface $serializer, EntityManagerInterface $em) {
+    public function createEquipe(Request $request,
+                                 SerializerInterface $serializer,
+                                 EntityManagerInterface $em,
+                                 ValidatorInterface $validator
+                                ) {
 
         // récupère la requête json
         $jsonRecu = $request->getContent();
@@ -124,6 +129,13 @@ class ApiController extends AbstractController
         try {
             // Transforme en objet de la classe Equipe
             $post = $serializer->deserialize($jsonRecu, Equipe::class, 'json');
+
+            // Vérification avec le validator
+            $errors = $validator->validate($post);
+            if (count($errors) > 0) {
+                return $this->json([$errors, 400]);
+            }
+
             $em->persist($post); $em->flush();
             return $this->json($post, 201, [], ['groups' => "equipe:read"]);
         } catch (NotEncodableValueException $e) {
@@ -137,7 +149,11 @@ class ApiController extends AbstractController
 
     // PROBLEME A CAUSE DU CONSTRUCTEUR !! -> rendu possible que si API trouvé
     #[Route('/apiPostJoueur', name: 'apiPostJoueur', methods: 'POST')]
-    public function createJoueur(Request $request, SerializerInterface $serializer, EntityManagerInterface $em) {
+    public function createJoueur(Request $request,
+                                 SerializerInterface $serializer,
+                                 EntityManagerInterface $em,
+                                 ValidatorInterface $validator
+                                ) {
 
         // récupère la requête json
         $jsonRecu = $request->getContent();
@@ -145,6 +161,11 @@ class ApiController extends AbstractController
         try {
             // Transforme en objet de la classe Joueur
             $post = $serializer->deserialize($jsonRecu, Joueur::class, 'json');
+
+            $errors = $validator->validate($post);
+            if (count($errors) > 0) {
+                return $this->json([$errors, 400]);
+            }
             $em->persist($post); $em->flush();
             return $this->json($post, 201, [], ['groups' => "joueur:read"]);
         } catch (NotEncodableValueException $e) {
@@ -157,7 +178,11 @@ class ApiController extends AbstractController
     }
 
     #[Route('/apiPostImage', name: 'apiPostImage', methods: 'POST')]
-    public function createImage(Request $request, SerializerInterface $serializer, EntityManagerInterface $em) {
+    public function createImage( Request $request,
+                                 SerializerInterface $serializer,
+                                 EntityManagerInterface $em,
+                                 ValidatorInterface $validator
+                                ) {
 
         // récupère la requête json
         $jsonRecu = $request->getContent();
@@ -165,6 +190,12 @@ class ApiController extends AbstractController
         try {
             // Transforme en objet de la classe Image
             $post = $serializer->deserialize($jsonRecu, Image::class, 'json');
+
+            $errors = $validator->validate($post);
+            if (count($errors) > 0) {
+                return $this->json([$errors, 400]);
+            }
+
             $em->persist($post); $em->flush();
             return $this->json($post, 201, [], ['groups' => "image:read"]);
         } catch (NotEncodableValueException $e) {

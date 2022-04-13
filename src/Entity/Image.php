@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert; // Permet l'ajout de contrainte de validation
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[Vich\Uploadable]
@@ -20,10 +21,12 @@ class Image
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read", "all:read"])]
+    #[Assert\NotBlank]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read", "all:read"])]
+    #[Assert\NotBlank]
     private $url;
 
     /**

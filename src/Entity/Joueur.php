@@ -3,10 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\JoueurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert; // Permet l'ajout de contrainte de validation
 
 #[ORM\Entity(repositoryClass: JoueurRepository::class)]
 class Joueur
@@ -19,14 +18,17 @@ class Joueur
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups(["joueur:read", "all:read"])]
+    #[Assert\NotBlank]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups(["joueur:read", "all:read"])]
+    #[Assert\NotBlank]
     private $nationnalite;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups(["joueur:read", "all:read"])]
+    #[Assert\NotBlank]
     private $poste;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -36,6 +38,7 @@ class Joueur
     #[ORM\ManyToOne(targetEntity: Equipe::class)]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(["joueur:read", "all:read"])]
+    #[Assert\NotBlank]
     private $equipe;
 
 
