@@ -18,14 +18,12 @@ class JoueurCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        /*
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
             TextField::new('nationnalite'),
             TextField::new('poste'),
         ];
-        */
     }
 
 }

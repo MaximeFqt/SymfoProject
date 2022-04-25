@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Equipe;
 use App\Entity\Favoris;
 use App\Entity\Image;
+use App\Form\EquipeType;
 use App\Form\ImageType;
 use App\Repository\EquipeRepository;
 use App\Repository\FavorisRepository;
@@ -167,23 +169,4 @@ class DefaultController extends AbstractController
         ]);
     }
 
-
-
-    #[Route("/admin", name:"addImage")]
-    #[IsGranted("ROLE_ADMIN")]
-    public function ajoutImage(Request $request, ManagerRegistry $managerRegistry): Response
-    {
-        $image = new Image();
-        $form = $this->createForm(ImageType::class, $image);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $managerRegistry->getManager();
-            $em->persist($image);
-            $em->flush();
-            return $this->redirectToRoute('homepage');
-        }
-        return $this->render('default/ajoutImage.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
 }

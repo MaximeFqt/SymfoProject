@@ -161,6 +161,11 @@ section.equipe {
     margin: 50px;
 }
 
+section.equipe a:hover {
+    color: #6b6b6b;
+    transition-duration: 1s;
+}
+
 .table th {
     font-weight: 700;
     color: #c2c2c2;

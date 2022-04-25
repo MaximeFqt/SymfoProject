@@ -15,11 +15,12 @@ class Favoris
     #[Groups(["fav:read", "all:read"])]
     private $id;
 
-    #[ORM\OneToOne(targetEntity: Equipe::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Equipe::class)]
+    #[ORM\JoinColumn(nullable: false)]
     #[Groups(["fav:read", "all:read"])]
     private $equipe;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'favoris')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'user')]
     #[Groups(["fav:read", "all:read"])]
     private $user;
 

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -11,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert; // Permet l'ajout de cont
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[Vich\Uploadable]
+#[ApiResource]
 class Image
 {
     #[ORM\Id]
@@ -21,12 +23,12 @@ class Image
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read", "all:read"])]
-    #[Assert\NotBlank]
+//    #[Assert\NotBlank] // Pose problème à l'implémentation d'Apiplatform
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(["equipe:read", "image:read", "fav:read", "joueur:read", "all:read"])]
-    #[Assert\NotBlank]
+//    #[Assert\NotBlank] // Pose problème à l'implémentation d'Apiplatform
     private $url;
 
     /**
@@ -35,9 +37,6 @@ class Image
      */
     #[Vich\UploadableField(mapping:"image", fileNameProperty:"url")]
     private $imageFile;
-
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private $updatedAt;
 
     public function getId(): ?int
     {
