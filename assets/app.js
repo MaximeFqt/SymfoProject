@@ -6,15 +6,17 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import '../public/css/style.css';
-import '../public/css/responsive.css';
-
 import Vue from 'vue';
+import App from './components/App.vue'
+import Equipes from './components/Equipes.vue'
 
 new Vue({
-    el: "#app",
-    delimiters: ['${', '}'],
+    el: "App",
     data: {
-        message: 'Salut'
+        message: "Hello Vue !"
+    },
+    components: {
+        App,
+        Equipes
     }
-})
+}).$mount("#app ");

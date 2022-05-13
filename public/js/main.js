@@ -16,19 +16,12 @@ function main() {
         }
     });
 
-    /* Traitement en jquery */
+    /* Traitement */
     btn.addEventListener('click', () => {
         window.scrollTo(
             top = 0,
             left = 0
         );
-    });
-
-    /* Button to add team on favourite */
-    $(function() {
-        $( "i" ).click(function() {
-            $( "i, span.fav" ).toggleClass( "press", 1000 );
-        });
     });
 
 }

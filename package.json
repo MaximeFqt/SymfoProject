@@ -1,9 +1,24 @@
 {
   "devDependencies": {
-    "@symfony/webpack-encore": "^1.8.2",
-    "vue": "^2.5",
-    "vue-loader": "^15.9.5",
+    "@symfony/webpack-encore": "github:symfony/webpack-encore",
+    "core-js": "^3.22.5",
+    "vue": "^2.6.14",
+    "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14",
     "webpack-notifier": "^1.6.0"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev-server": "encore dev-server --hot",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
+  },
+  "dependencies": {
+    "@vue/composition-api": "^1.6.1",
+    "axios": "^0.27.2",
+    "pinia": "^2.0.14",
+    "yarn": "^1.22.18"
   }
 }

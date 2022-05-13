@@ -29,6 +29,7 @@
         {% if is_granted('ROLE_USER') %}
             <a class="lien" href="{{ path('addFav', {team_id: equipe.id}) }}"> Ajouter aux favoris </a>
         {% endif %}
+        <a class="lien" href="{{ path('equipe') }}"> Retour </a>
 
     </section>
 

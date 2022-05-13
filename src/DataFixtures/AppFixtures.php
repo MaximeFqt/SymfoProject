@@ -160,7 +160,7 @@ class AppFixtures extends Fixture
          ************ */
 
         // Entraineur
-        $psg0  = new Joueur('Mauricio Pochetiino', "Argentine", "Manager", null, $team1);               $manager->persist($psg0);
+        $psg0  = new Joueur('Mauricio Pochetiino', "Argentine", "Manager", null, $team1);           $manager->persist($psg0);
         // Gardiens
         $psg1  = new Joueur("Gianluigi Donnaruma", "Italie", "Gardien", 50, $team1);                $manager->persist($psg1);
         $psg2  = new Joueur("Keylor Navas", "Costa Rica", "Gardien", 1, $team1);                    $manager->persist($psg2);
