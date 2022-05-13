@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220414173659 extends AbstractMigration
+final class Version20220513203735 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,6 +20,7 @@ final class Version20220414173659 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, titre VARCHAR(255) NOT NULL, url VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE equipe (id INT AUTO_INCREMENT NOT NULL, ecusson_id INT NOT NULL, nom VARCHAR(255) NOT NULL, nb_joueur INT NOT NULL, UNIQUE INDEX UNIQ_2449BA155CB74C80 (ecusson_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE favoris (id INT AUTO_INCREMENT NOT NULL, equipe_id INT NOT NULL, user_id INT DEFAULT NULL, date LONGTEXT NOT NULL, INDEX IDX_8933C4326D861B89 (equipe_id), INDEX IDX_8933C432A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE image (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, url VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -38,6 +39,7 @@ final class Version20220414173659 extends AbstractMigration
         $this->addSql('ALTER TABLE joueur DROP FOREIGN KEY FK_FD71A9C56D861B89');
         $this->addSql('ALTER TABLE equipe DROP FOREIGN KEY FK_2449BA155CB74C80');
         $this->addSql('ALTER TABLE favoris DROP FOREIGN KEY FK_8933C432A76ED395');
+        $this->addSql('DROP TABLE article');
         $this->addSql('DROP TABLE equipe');
         $this->addSql('DROP TABLE favoris');
         $this->addSql('DROP TABLE image');

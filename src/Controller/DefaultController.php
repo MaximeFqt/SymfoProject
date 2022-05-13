@@ -7,6 +7,7 @@ use App\Entity\Favoris;
 use App\Entity\Image;
 use App\Form\EquipeType;
 use App\Form\ImageType;
+use App\Repository\ArticleRepository;
 use App\Repository\EquipeRepository;
 use App\Repository\FavorisRepository;
 use App\Repository\JoueurRepository;
@@ -25,10 +26,14 @@ class DefaultController extends AbstractController
      * @return Response
      */
     #[Route('/', name: 'accueil')]
-    public function index(): Response
+    public function index(ManagerRegistry $managerRegistry): Response
     {
+        $articleRepo = new ArticleRepository($managerRegistry);
+        $article = $articleRepo->findAll();
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
+            'articles' => $article,
             'currentUser' => $this->getUser()
         ]);
     }
@@ -41,7 +46,7 @@ class DefaultController extends AbstractController
      * @return Response
      */
     #[Route('/equipelist', name: 'equipe')]
-    public function equipe(ManagerRegistry $managerRegistry, Request $request): Response
+    public function equipe(ManagerRegistry $managerRegistry): Response
     {
         $equipeRepo = new EquipeRepository($managerRegistry);
         $equipe = $equipeRepo->findAll();

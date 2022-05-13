@@ -22,7 +22,7 @@
                 <tr>
                     <td> {{ e.nom }} </td>
                     <td> {{ e.nbjoueur }} </td>
-                    <td> <img src="{{ asset('img/'~e.ecusson) }}" alt="{{ e.nom }}"> </td>
+                    <td> <img src="{{ asset('img/equipe/'~e.ecusson) }}" alt="{{ e.nom }}"> </td>
                     <td>
                         <a href="{{ path('equipeDetails', {team_id: e.id}) }}"> Voir plus </a>
                         <br>

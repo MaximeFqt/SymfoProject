@@ -91,9 +91,10 @@ nav .buttons button.register {
 
 
 
-/** HEADER **/
+/** TITLE **/
 div.title {
     margin-top: 40px;
+    margin-bottom: 50px;
     /*background-image: url(../img/ligue1.png);*/
     background-repeat: no-repeat;
     background-position: center;
@@ -103,7 +104,32 @@ div.title {
 div.title img.title_logo {
     max-height: 40vh;
 }
-/** END HEADER **/
+/** END TITLE **/
+
+
+
+/** ARTICLES **/
+div.articles {
+    margin-bottom: 50px;
+    /*background-image: url(../img/ligue1.png);*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px 400px;
+}
+
+div.articles h3 {
+    font-size: 2rem;
+}
+
+div.articles img.article {
+    width: 70vh;
+}
+
+div.articles figcaption {
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+/** END ARTICLES **/
 
 
 

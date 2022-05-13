@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Article;
 use App\Entity\Equipe;
 use App\Entity\Favoris;
 use App\Entity\Image;
@@ -471,7 +472,27 @@ class AppFixtures extends Fixture
 
         $manager->persist($fav);
 
+        /* ARTICLES */
+        $art = new Article();
+        $art->setTitre("Classement de la ligue 1");
+        $art->setUrl("https://www.ligue1.fr/classement");
+        $art->setImage("https://dicodusport.fr/blog/wp-content/uploads/2021/08/Football-Le-classement-de-la-Ligue-1-2021-2022.png");
+        $manager->persist($art);
+
+        $art1 = new Article();
+        $art1->setTitre("Calendrier et résultat de la ligue 1");
+        $art1->setUrl("https://www.ligue1.fr/calendrier-resultats");
+        $art1->setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7KKX6xiNIqhrQbfLkV9LdJ4lVPJS3d0v1Hw&usqp=CAU");
+        $manager->persist($art1);
+
+        $art2 = new Article();
+        $art2->setTitre("Lauréat du plus beau but");
+        $art2->setUrl("https://onefootball.com/fr/news/ligue-1-les-laureats-du-plus-beau-but-de-la-saison-devoiles-35086565");
+        $art2->setImage("https://image-service.onefootball.com/transform?w=840&h=630&dpr=2&image=https%3A%2F%2Fmedia.foot-national.com%2F18%2F2022%2F05%2Fphoto_article%2F776388%2F305353%2F800-L-ligue-1-les-laurats-du-plus-beau-but-de-la-saison-dvoils.jpg");
+        $manager->persist($art2);
+
         $manager->flush();
+
     }
 
 }

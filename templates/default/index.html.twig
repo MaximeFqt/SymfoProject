@@ -10,4 +10,18 @@
         <img src="{{ asset('img/ligue1.png') }}" alt="ligue1" class="title_logo">
     </div>
 
+    <!-- ARTICLES -->
+    <div class="articles">
+        <hr> <h3> Articles récents </h3> <hr>
+        {% for a in articles %}
+            <figure>
+                <a href="{{ a.url }}" target="_blank">
+                    <img class="article" src="{{ asset(a.image) }}" alt="{{ a.titre }}">
+                </a>
+                <figcaption> {{ a.titre }} </figcaption>
+            </figure>
+            <hr>
+        {% endfor %}
+    </div>
+
 {% endblock %}
