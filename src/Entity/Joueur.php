@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert; // Permet l'ajout de contrainte de validation
 
 #[ORM\Entity(repositoryClass: JoueurRepository::class)]
-#[ApiResource]
+#[ApiResource/* (normalizationContext: ['groups' => ["equipe:read"]])*/]
 class Joueur
 {
     #[ORM\Id]
@@ -39,7 +39,7 @@ class Joueur
 
     #[ORM\ManyToOne(targetEntity: Equipe::class)]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["joueur:read", "all:read"])]
+    #[Groups(["joueur:read", "all:read", "equipe:read"])]
     #[Assert\NotBlank]
     private $equipe;
 

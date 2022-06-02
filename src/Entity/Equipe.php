@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert; // Permet l'ajout de contrainte de validation
 
 #[ORM\Entity(repositoryClass: EquipeRepository::class)]
-#[ApiResource]
+#[ApiResource /*(normalizationContext: ['groups' => ["image:read"]])*/]
 class Equipe
 {
     #[ORM\Id]
@@ -32,7 +32,7 @@ class Equipe
 
     #[ORM\OneToOne(targetEntity: Image::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["equipe:read", "fav:read", "joueur:read", "all:read"])]
+    #[Groups(["equipe:read", "fav:read", "joueur:read", "all:read", "image:read"])]
 //    #[Assert\NotBlank] // Pose problème à l'implémentation d'Apiplatform
     private $ecusson;
 
